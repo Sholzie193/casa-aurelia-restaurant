@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Request a table, private room, or cellar dinner at Casa Aurelia in Florence."
+    />
+    <title>Reservations | Casa Aurelia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header site-header-light" data-header>
+      <a class="brand" href="./index.html" aria-label="Casa Aurelia home">
+        <span>Casa</span>
+        <span>Aurelia</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="./cuisine.html">Cuisine</a>
+        <a href="./menu.html">Menu</a>
+        <a href="./cellar.html">Cellar</a>
+        <a href="./visit.html">Visit</a>
+      </nav>
+      <a class="header-reserve" href="./reservations.html" aria-current="page">Reserve</a>
+    </header>
+
+    <main class="reservation-page">
+      <section class="reserve standalone-reserve">
+        <p class="kicker">Prenota</p>
+        <h1>For tables, private rooms, and cellar dinners.</h1>
+        <p>
+          Reservation requests are reviewed by the dining room. The team replies
+          personally with available times, menu details, and any guest notes.
+        </p>
+        <form class="reservation-form" aria-label="Reservation request form">
+          <label>
+            Name
+            <input type="text" name="name" autocomplete="name" />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="email" />
+          </label>
+          <label>
+            Preferred date
+            <input type="date" name="date" />
+          </label>
+          <label>
+            Party size
+            <select name="party">
+              <option>2 guests</option>
+              <option>3 guests</option>
+              <option>4 guests</option>
+              <option>5 guests</option>
+              <option>6+ guests</option>
+            </select>
+          </label>
+          <button type="submit">Send request</button>
+        </form>
+      </section>
+
+      <section class="info-grid reservation-notes">
+        <article>
+          <span>Booking window</span>
+          <p>Tables open 90 days in advance. Cancellations require 72 hours of notice.</p>
+        </article>
+        <article>
+          <span>Private dining</span>
+          <p>The fresco room seats six to ten guests with a custom menu and dedicated service.</p>
+        </article>
+        <article>
+          <span>Contact</span>
+          <p>For urgent changes, call +39 055 018 1998 after 14:00 local time.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>Casa Aurelia</p>
+      <p>Via della Vigna Nuova 18 · Firenze · +39 055 018 1998</p>
+      <p>Fictional concept for portfolio presentation.</p>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

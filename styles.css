@@ -1,0 +1,778 @@
+:root {
+  --paper: #f3eee5;
+  --porcelain: #fffaf1;
+  --ink: #17130d;
+  --olive: #252a1f;
+  --olive-soft: #343b2b;
+  --clay: #8e5f43;
+  --brass: #b58b53;
+  --muted: rgba(23, 19, 13, 0.64);
+  --line: rgba(23, 19, 13, 0.14);
+  --light-line: rgba(255, 250, 241, 0.18);
+  font-family: "Instrument Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(90deg, rgba(23, 19, 13, 0.035) 1px, transparent 1px) 0 0 / 96px 96px,
+    var(--paper);
+  overflow-x: hidden;
+}
+
+body::selection {
+  color: var(--porcelain);
+  background: var(--olive);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+section {
+  scroll-margin-top: 94px;
+}
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 28px;
+  min-height: 78px;
+  padding: 18px clamp(20px, 4.6vw, 70px);
+  color: var(--porcelain);
+  transition: background 260ms ease, color 260ms ease, border-color 260ms ease;
+}
+
+.site-header.is-scrolled {
+  color: var(--ink);
+  background: rgba(243, 238, 229, 0.88);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(22px);
+}
+
+.brand {
+  justify-self: start;
+  display: grid;
+  gap: 0;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: clamp(1.05rem, 1.6vw, 1.45rem);
+  line-height: 1.02;
+  letter-spacing: 0.02em;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 3vw, 42px);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+nav a,
+.header-reserve {
+  opacity: 0.86;
+  transition: opacity 180ms ease;
+}
+
+nav a:hover,
+.header-reserve:hover,
+[aria-current="page"] {
+  opacity: 1;
+}
+
+.header-reserve {
+  justify-self: end;
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.site-header-light {
+  color: var(--ink);
+  background: rgba(243, 238, 229, 0.92);
+  border-bottom: 1px solid var(--line);
+}
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: end;
+  padding: 128px clamp(20px, 5vw, 76px) 56px;
+  color: var(--porcelain);
+  isolation: isolate;
+}
+
+.page-hero {
+  position: relative;
+  min-height: 78svh;
+  display: grid;
+  align-items: end;
+  padding: 140px clamp(20px, 5vw, 76px) 72px;
+  color: var(--porcelain);
+  isolation: isolate;
+}
+
+.page-hero h1 {
+  max-width: 11ch;
+  font-size: clamp(4rem, 8vw, 8.8rem);
+}
+
+.page-hero .hero-copy > p:not(.kicker) {
+  max-width: 650px;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  background: var(--olive);
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 52%;
+  transform: scale(1.02);
+  filter: saturate(0.78) contrast(1.04) brightness(0.82);
+}
+
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(14, 13, 9, 0.9), rgba(14, 13, 9, 0.42) 46%, rgba(14, 13, 9, 0.78)),
+    linear-gradient(0deg, rgba(14, 13, 9, 0.72), rgba(14, 13, 9, 0.1) 44%, rgba(14, 13, 9, 0.28));
+}
+
+.hero-copy {
+  width: min(920px, 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.kicker {
+  margin: 0 0 18px;
+  color: var(--brass);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(4.8rem, 13vw, 12.5rem);
+  line-height: 0.9;
+  max-width: 9ch;
+}
+
+.hero-copy > p:not(.kicker) {
+  max-width: 590px;
+  margin: 28px 0 0;
+  color: rgba(255, 250, 241, 0.82);
+  font-size: clamp(1.05rem, 1.7vw, 1.42rem);
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-top: 42px;
+}
+
+.hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 0 24px;
+  border: 1px solid rgba(255, 250, 241, 0.54);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero-actions span {
+  color: rgba(255, 250, 241, 0.62);
+  font-size: 0.86rem;
+}
+
+.hero-note {
+  position: absolute;
+  right: clamp(20px, 5vw, 76px);
+  bottom: 58px;
+  width: min(280px, 28vw);
+  padding-top: 18px;
+  border-top: 1px solid var(--light-line);
+  color: rgba(255, 250, 241, 0.74);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.hero-note p {
+  margin: 0;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.24fr) 1fr;
+  gap: clamp(24px, 5vw, 72px);
+  padding: clamp(76px, 13vw, 172px) clamp(20px, 5vw, 76px);
+}
+
+.intro-label {
+  color: var(--clay);
+  font-size: 0.77rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.intro p {
+  margin: 0;
+  max-width: 1000px;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: clamp(2.1rem, 4.4vw, 5.6rem);
+  line-height: 1.04;
+}
+
+.home-index {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.home-link {
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: clamp(24px, 4vw, 52px);
+  border-right: 1px solid var(--line);
+  transition: background 220ms ease, color 220ms ease;
+}
+
+.home-link:last-child {
+  border-right: 0;
+}
+
+.home-link:hover {
+  color: var(--porcelain);
+  background: var(--olive);
+}
+
+.home-link span,
+.info-grid span {
+  color: var(--brass);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.home-link strong {
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.home-link p {
+  margin: 0;
+  color: currentColor;
+  opacity: 0.68;
+  line-height: 1.7;
+}
+
+.editorial,
+.cellar,
+.visit {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.8fr);
+  gap: clamp(34px, 7vw, 112px);
+  align-items: center;
+  padding: 0 clamp(20px, 5vw, 76px) clamp(86px, 12vw, 166px);
+}
+
+.page-section {
+  padding-top: clamp(86px, 12vw, 166px);
+}
+
+.portrait-image img,
+.dish-image img,
+.cellar-media img,
+.visit-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.86) contrast(1.02);
+}
+
+.portrait-image {
+  height: min(78vw, 880px);
+  max-height: 920px;
+  min-height: 560px;
+  overflow: hidden;
+}
+
+.editorial-copy,
+.cellar-copy,
+.visit-copy {
+  max-width: 540px;
+}
+
+.editorial-copy h2,
+.section-heading h2,
+.cellar-copy h2,
+.visit-copy h2,
+.reserve h2 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 5.7rem);
+  line-height: 1.04;
+}
+
+.editorial-copy > p:not(.kicker),
+.section-heading p,
+.cellar-copy > p:not(.kicker),
+.visit-copy > p:not(.kicker) {
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.25vw, 1.14rem);
+  line-height: 1.85;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 42px 0 0;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
+dt {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+dd {
+  margin: 10px 0 0;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 1.25rem;
+}
+
+.menu-section {
+  background: var(--olive);
+  color: var(--porcelain);
+  padding: clamp(76px, 11vw, 148px) clamp(20px, 5vw, 76px);
+}
+
+.menu-page {
+  padding-top: clamp(76px, 10vw, 124px);
+}
+
+.section-heading {
+  max-width: 920px;
+  margin-bottom: clamp(46px, 7vw, 94px);
+}
+
+.section-heading p {
+  color: rgba(255, 250, 241, 0.66);
+  max-width: 640px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.8fr) minmax(0, 1fr);
+  gap: clamp(34px, 7vw, 108px);
+  align-items: end;
+}
+
+.menu-list {
+  display: grid;
+  gap: 30px;
+}
+
+.menu-list div {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  column-gap: 22px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255, 250, 241, 0.16);
+}
+
+.menu-list span {
+  color: var(--brass);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+}
+
+.menu-list h3 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  line-height: 1.12;
+}
+
+.menu-list p {
+  grid-column: 2;
+  margin: 10px 0 0;
+  color: rgba(255, 250, 241, 0.62);
+  line-height: 1.65;
+}
+
+.dish-image {
+  margin: 0;
+}
+
+.dish-image img {
+  aspect-ratio: 1.15;
+}
+
+figcaption {
+  max-width: 420px;
+  margin-top: 18px;
+  color: rgba(255, 250, 241, 0.56);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.cellar {
+  padding-top: clamp(86px, 12vw, 166px);
+}
+
+.cellar {
+  grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.74fr);
+}
+
+.cellar-media {
+  height: min(62vw, 680px);
+  min-height: 440px;
+  overflow: hidden;
+}
+
+.cellar-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 38px;
+}
+
+.cellar-stats span {
+  display: grid;
+  gap: 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.cellar-stats strong {
+  color: var(--ink);
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: clamp(1.7rem, 2.5vw, 2.6rem);
+  font-weight: 400;
+}
+
+.visit {
+  grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1fr);
+}
+
+.visit-image {
+  height: min(58vw, 620px);
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.reserve {
+  margin: 0 clamp(20px, 5vw, 76px) clamp(86px, 10vw, 132px);
+  padding: clamp(48px, 7vw, 90px);
+  color: var(--porcelain);
+  background:
+    linear-gradient(135deg, rgba(37, 42, 31, 0.96), rgba(26, 28, 21, 0.98)),
+    var(--olive);
+}
+
+.reservation-page {
+  padding-top: 118px;
+}
+
+.standalone-reserve {
+  margin-top: clamp(34px, 5vw, 72px);
+}
+
+.standalone-reserve h1 {
+  max-width: 940px;
+  margin: 0;
+  font-size: clamp(3.2rem, 7vw, 7.8rem);
+  line-height: 1.02;
+}
+
+.standalone-reserve > p:not(.kicker) {
+  max-width: 680px;
+  margin: 26px 0 0;
+  color: rgba(255, 250, 241, 0.7);
+  line-height: 1.8;
+}
+
+.reserve h2 {
+  max-width: 820px;
+}
+
+.text-columns,
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(28px, 6vw, 96px);
+  padding: 0 clamp(20px, 5vw, 76px) clamp(86px, 12vw, 156px);
+}
+
+.text-columns article {
+  border-top: 1px solid var(--line);
+  padding-top: 30px;
+}
+
+.text-columns h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 4.6rem);
+  line-height: 1.05;
+}
+
+.text-columns p:not(.kicker),
+.info-grid p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.info-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.info-grid article {
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+}
+
+.reservation-notes {
+  padding-top: 0;
+}
+
+.reservation-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) auto;
+  gap: 18px;
+  align-items: end;
+  margin-top: 48px;
+}
+
+label {
+  display: grid;
+  gap: 10px;
+  color: rgba(255, 250, 241, 0.66);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+input,
+select,
+button {
+  min-height: 48px;
+  border: 1px solid rgba(255, 250, 241, 0.24);
+  border-radius: 0;
+  color: var(--porcelain);
+  background: transparent;
+  font: inherit;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0 12px;
+}
+
+select option {
+  color: var(--ink);
+}
+
+button {
+  padding: 0 24px;
+  background: var(--porcelain);
+  color: var(--olive);
+  cursor: pointer;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 28px;
+  padding: 28px clamp(20px, 5vw, 76px);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 720ms ease, transform 720ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 980px) {
+  .site-header {
+    grid-template-columns: 1fr auto;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .hero-note {
+    position: static;
+    width: min(460px, 100%);
+    margin-top: 44px;
+  }
+
+  .intro,
+  .home-index,
+  .editorial,
+  .menu-grid,
+  .cellar,
+  .visit,
+  .text-columns,
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-link {
+    min-height: 240px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .portrait-image,
+  .cellar-media,
+  .visit-image {
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 0.86;
+  }
+
+  .visit-copy {
+    order: 2;
+  }
+
+  .visit-image {
+    order: 1;
+  }
+
+  .reservation-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  button {
+    grid-column: 1 / -1;
+  }
+
+  footer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .site-header {
+    min-height: 70px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .header-reserve {
+    font-size: 0.68rem;
+  }
+
+  .hero {
+    padding-top: 116px;
+  }
+
+  h1 {
+    font-size: clamp(4.2rem, 22vw, 6.8rem);
+  }
+
+  .intro {
+    gap: 18px;
+  }
+
+  dl,
+  .cellar-stats,
+  .reservation-form {
+    grid-template-columns: 1fr;
+  }
+
+  .reserve {
+    padding: 34px 22px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .page-hero {
+    min-height: 74svh;
+  }
+}
