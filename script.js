@@ -1,6 +1,8 @@
 const header = document.querySelector("[data-header]");
 const revealEls = document.querySelectorAll(".reveal");
 const form = document.querySelector(".reservation-form");
+const menuToggle = document.querySelector(".menu-toggle");
+const mobileMenu = document.querySelector("#mobile-menu");
 
 function updateHeader() {
   if (header) {
@@ -21,6 +23,47 @@ const revealObserver = new IntersectionObserver(
 );
 
 revealEls.forEach((element) => revealObserver.observe(element));
+
+function setMobileMenu(open) {
+  if (!menuToggle || !mobileMenu) {
+    return;
+  }
+
+  menuToggle.setAttribute("aria-expanded", String(open));
+  document.body.classList.toggle("menu-open", open);
+
+  if (open) {
+    mobileMenu.hidden = false;
+    window.requestAnimationFrame(() => mobileMenu.classList.add("is-open"));
+    return;
+  }
+
+  mobileMenu.classList.remove("is-open");
+  window.setTimeout(() => {
+    if (menuToggle.getAttribute("aria-expanded") === "false") {
+      mobileMenu.hidden = true;
+    }
+  }, 300);
+}
+
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+    setMobileMenu(!isOpen);
+  });
+
+  mobileMenu.addEventListener("click", (event) => {
+    if (event.target === mobileMenu || event.target.closest("a")) {
+      setMobileMenu(false);
+    }
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setMobileMenu(false);
+    }
+  });
+}
 
 if (form) {
   form.addEventListener("submit", (event) => {
